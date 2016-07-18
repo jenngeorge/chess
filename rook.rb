@@ -5,6 +5,8 @@ class Rook < SlidingPiece
     super(:rook)
   end
 
-
-
+  def move_dirs
+    [:up, :down, :left, :right]
+  end
+  
 end

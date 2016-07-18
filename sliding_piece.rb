@@ -6,7 +6,10 @@ class SlidingPiece < Piece
   end
 
   #directions is an array of directions
-  def moves(directions)
+  def moves(move_dirs)
+    moves_arr = []
+    move_dirs.each do |move_dir|
+      
 
 
   end
