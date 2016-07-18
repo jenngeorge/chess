@@ -1,14 +1,16 @@
+require_relative "board"
+
 class Piece
 
   DIRECTIONS = {
-    :up => [x-1, y],
-    :down => [x+1, y],
-    :left => [x, y-1],
-    :right => [x, y+1],
-    :left_up => [x-1, y-1],
-    :right_up => [x-1, y+1],
-    :left_down => [x+1, y-1],
-    :right_down => [x+1, y+1]
+    :up => [-1, 0],
+    :down => [1, 0],
+    :left => [0, -1],
+    :right => [0, 1],
+    :left_up => [-1, -1],
+    :right_up => [-1, 1],
+    :left_down => [1, -1],
+    :right_down => [1, 1]
   }
 
   attr_reader :color
