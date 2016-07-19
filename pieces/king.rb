@@ -1,8 +1,9 @@
-require_relative "sliding_piece"
+require_relative "step_piece"
 
-class Queen < SlidingPiece
+class King < StepPiece
   attr_reader :board
-  def initialize(type='queen', color=:black, location=[0,0], board=Board.new)
+
+  def initialize(type='king', color=:black, location=[0,0], board=Board.new)
     super
   end
 
