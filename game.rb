@@ -1,15 +1,6 @@
-require_relative 'board'
-require_relative 'display'
-require_relative 'cursorable'
-require_relative 'pieces/rook'
-require_relative 'pieces/null_piece'
-require_relative 'pieces/piece'
-require_relative 'pieces/rook'
-require_relative 'pieces/sliding_piece'
-require_relative 'pieces/bishop'
-require_relative 'pieces/queen'
-require_relative 'pieces/king'
-# Dir[File.dirname(__FILE__) + '/chess/pieces/*.rb'].each {|file| require file }
+require "require_all"
+require_all "pieces"
+require_all "."
 
 if __FILE__ == $PROGRAM_NAME
   b = Board.new
@@ -30,5 +21,9 @@ if __FILE__ == $PROGRAM_NAME
 
   king = King.new(type=nil, color=:black, location=[0,0], b)
   p "king moves"
-  p king.moves(king.move_dirs)
+  p king.moves(king.move_dirs, king.directions)
+
+  knight = Knight.new(type=nil, color=:black, location=[3, 3], b)
+  p "knight moves"
+  p knight.moves(knight.move_dirs, knight.directions)
 end
