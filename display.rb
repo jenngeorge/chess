@@ -16,13 +16,14 @@ class Display
   }
 
 
-  def initialize(board)
+  def initialize(board= Board.new)
     @board = board
     @cursor_pos = [0, 0]
     @selected = false
   end
 
   def render
+    system("clear")
     @board.each_with_index do |row, row_idx|
       row.each_index do |col_idx|
         pos = [row_idx, col_idx]
@@ -41,11 +42,13 @@ class Display
   end
 
   def make_moves
+
     until @selected
       get_input
       render
       puts "getting input"
       @selected = true unless get_input.nil?
+      render
     end
 
     print @cursor_pos

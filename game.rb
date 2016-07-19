@@ -11,13 +11,16 @@ require_relative "pieces/queen"
 require_relative "pieces/rook"
 require_relative "pieces/sliding_piece"
 require_relative "pieces/step_piece"
+require_relative "player"
+require_relative "human_player"
+require_relative "computer_player"
 require "colorize"
 
 class Game
-  attr_reader :board, :player1, :player2, :current_player
+  attr_reader :display, :player1, :player2, :current_player
 
-  def initialize(board = Board.new, player1 = HumanPlayer.new, player2 = ComputerPlayer.new)
-    @board = board
+  def initialize(display = Display.new, player1 = HumanPlayer.new, player2 = ComputerPlayer.new)
+    @display= display
     @player1 = player1
     @player2 = player2
     @current_player = [player1, player2].sample
@@ -25,13 +28,18 @@ class Game
 
   def play
     until game.won?
+      display_board
       play_turn
 
     end
   end
 
+  def display_board
+    @display.render
+  end
+
   def play_turn
-    @current_player.make_move 
+    @current_player.make_move
   end
 
   def switch_players
@@ -44,10 +52,7 @@ class Game
 end
 
 if __FILE__ == $PROGRAM_NAME
-  b = Board.new
-  b.populate_grid
-  d = Display.new(b)
-  b.set_pieces
-  puts
-  d.render
+  g = Game.new
+  g.display_board
+  g.display.make_moves
 end
