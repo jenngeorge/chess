@@ -42,15 +42,13 @@ class Display
   end
 
   def make_moves
-
     until @selected
-      get_input
+      user_input = get_input
       render
       puts "getting input"
-      @selected = true unless get_input.nil?
+      @selected = true unless user_input.nil?
       render
     end
-
-    print @cursor_pos
+    user_input
   end
 end

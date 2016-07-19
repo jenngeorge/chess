@@ -2,7 +2,8 @@ require_relative 'display'
 
 class Player
 
-  def initialize(color, name)
+  def initialize(display, color, name)
+    @display = display
     @color = color
     @name = name
   end

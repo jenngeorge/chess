@@ -19,17 +19,17 @@ require "colorize"
 class Game
   attr_reader :display, :player1, :player2, :current_player
 
-  def initialize(display = Display.new, player1 = HumanPlayer.new, player2 = ComputerPlayer.new)
-    @display= display
-    @player1 = player1
-    @player2 = player2
+  def initialize(display = Display.new)
+    @display = display
+    @player1 = HumanPlayer.new(@display)
+    @player2 = HumanPlayer.new(@display, :white, "homo sapien")
     @current_player = [player1, player2].sample
   end
 
   def play
     until game.won?
       display_board
-      play_turn
+
 
     end
   end
@@ -40,6 +40,11 @@ class Game
 
   def play_turn
     @current_player.make_move
+    #ask for piece
+    display.make_moves #gives selected cursor position of piece
+
+    #ask where to move piece
+
   end
 
   def switch_players

@@ -1,12 +1,13 @@
 require_relative 'player'
+require_relative 'display'
 
 class HumanPlayer < Player
-  def initialize(color=:black, name="HUUUMAN")
+  def initialize(display = Display.new, color=:black, name="HUUUMAN")
     super
   end
 
   def make_move
-    give_prompt
+    @display.make_moves 
   end
 
   def give_prompt
@@ -14,5 +15,5 @@ class HumanPlayer < Player
 
   end
 
-  
+
 end
