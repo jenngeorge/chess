@@ -1,5 +1,5 @@
-require_relative 'pieces/null_piece'
-
+require "require_all"
+require_all "pieces"
 
 class Board
   include Enumerable
@@ -22,6 +22,26 @@ class Board
         self[pos] = NullPiece.instance
       end
     end
+  end
+
+  def set_pieces
+
+  end
+
+
+  def set_pawn_row(color)
+    if color == :black
+      row_to_pawnify = 6
+    else
+      row_to_pawnify = 1
+    end
+
+    (0..7).each do |col|
+      @grid[row_to_pawnify][col] = Pawn.new(:pawn, color, [row_to_pawnify, col], self)
+    end
+  end
+
+  def set_royal_row
 
   end
 

@@ -7,7 +7,7 @@ class Knight < Piece
   attr_reader :directions, :board
 
 
-  def initialize(type='knight', color=:black, location=[0,0], board=Board.new)
+  def initialize(type=:knight, color=:black, location=[0,0], board=Board.new)
     super
     @directions = {
       left_up: [-2, -1],

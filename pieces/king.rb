@@ -5,7 +5,7 @@ class King < Piece
   include StepPiece
   attr_reader :board, :directions
 
-  def initialize(type='king', color=:black, location=[0,0], board=Board.new)
+  def initialize(type=:king, color=:black, location=[0,0], board=Board.new)
     super
   end
 

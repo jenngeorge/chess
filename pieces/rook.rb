@@ -5,7 +5,7 @@ class Rook < Piece
   include SlidingPiece
 
   attr_reader :board
-  def initialize(type='rook', color=:black, location=[0,0], board=Board.new)
+  def initialize(type=:rook, color=:black, location=[0,0], board=Board.new)
     super
   end
 

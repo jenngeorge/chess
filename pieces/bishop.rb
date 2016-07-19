@@ -5,7 +5,7 @@ class Bishop < Piece
   include SlidingPiece
 
   attr_reader :board
-  def initialize(type='bishop', color=:black, location=[0,0], board=Board.new)
+  def initialize(type=:bishop, color=:black, location=[0,0], board=Board.new)
     super
   end
 

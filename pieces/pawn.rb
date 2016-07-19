@@ -5,7 +5,7 @@ class Pawn < Piece
   include StepPiece
   attr_reader :board, :directions
 
-  def initialize(type='pawn', color=:black, location=[0,0], board=Board.new)
+  def initialize(type=:pawn, color=:black, location=[0,0], board=Board.new)
     super
   end
 
@@ -33,7 +33,7 @@ class Pawn < Piece
       puts "1 or 2 steps?"
       number_steps = gets.chomp.to_i
     end
-    byebug
+    # byebug
     x = @location[0] + step_move_dirs[0]
     y = @location[1] + step_move_dirs[1]
     possible_moves << [x, y]

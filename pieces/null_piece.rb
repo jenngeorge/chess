@@ -11,6 +11,10 @@ class NullPiece
     @color
   end
 
+  def type
+    :null
+  end
+  
   def to_s
     "   "
   end
