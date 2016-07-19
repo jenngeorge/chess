@@ -25,7 +25,10 @@ class Board
   end
 
   def set_pieces
-
+    set_pawn_row(:white)
+    set_pawn_row(:black)
+    set_royal_row(:white)
+    set_royal_row(:black)
   end
 
 
@@ -41,8 +44,20 @@ class Board
     end
   end
 
-  def set_royal_row
-
+  def set_royal_row(color)
+    if color == :black
+      row_to_pawnify = 7
+    else
+      row_to_pawnify = 0
+    end
+    @grid[row_to_pawnify][0] = Rook.new(:rook, color, [row_to_pawnify, 0], self)
+    @grid[row_to_pawnify][1] = Knight.new(:knight, color, [row_to_pawnify, 1], self)
+    @grid[row_to_pawnify][2] = Bishop.new(:bishop, color, [row_to_pawnify, 2], self)
+    @grid[row_to_pawnify][3] = King.new(:king, color, [row_to_pawnify, 3], self)
+    @grid[row_to_pawnify][4] = Queen.new(:queen, color, [row_to_pawnify, 4], self)
+    @grid[row_to_pawnify][5] = Bishop.new(:bishop, color, [row_to_pawnify, 5], self)
+    @grid[row_to_pawnify][6] = Knight.new(:knight, color, [row_to_pawnify, 6], self)
+    @grid[row_to_pawnify][7] = Rook.new(:rook, color, [row_to_pawnify, 7], self)
   end
 
   def each(&prc)

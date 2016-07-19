@@ -26,11 +26,12 @@ class Display
     @board.each_with_index do |row, row_idx|
       row.each_index do |col_idx|
         pos = [row_idx, col_idx]
-        if @cursor_pos == pos
-          print @board[pos].to_s.colorize(:background => :green)
-        end
         unless @board[pos].is_a?(NullPiece)
-          print " #{PIECE_SYMBOLS[@board[pos].type].encode('UTF-8').colorize(@board[pos].color)} "
+          if @cursor_pos == pos
+            print " #{PIECE_SYMBOLS[@board[pos].type].encode('UTF-8').colorize(:color => @board[pos].color, :background => :green)} "
+          else
+            print " #{PIECE_SYMBOLS[@board[pos].type].encode('UTF-8').colorize(@board[pos].color)} "
+          end
         end
       end
       puts

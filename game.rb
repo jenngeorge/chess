@@ -47,7 +47,8 @@ if __FILE__ == $PROGRAM_NAME
   pawn = Pawn.new(type=nil, color=:white, location=[1, 0], b)
   p "pawn moves"
   p pawn.step_moves
-  b.set_pawn_row(pawn.color)
+  b.set_pieces
+  puts
   p d.render
 
 
