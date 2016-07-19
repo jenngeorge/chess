@@ -7,6 +7,8 @@ class Board
 
   def initialize
     @grid = Array.new(8) {Array.new(8)}
+    populate_grid
+    set_pieces
   end
 
   #update 2d grid and moved piece's position
@@ -14,7 +16,6 @@ class Board
   def move(start, end_pos)
   end
 
-  #TODO: add in starting pieces
   def populate_grid
     @grid.each_with_index do |row, row_idx|
       row.each_index do |col_idx|

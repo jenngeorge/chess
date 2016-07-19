@@ -6,12 +6,12 @@ class Display
   include Cursorable
 
   PIECE_SYMBOLS = {
-    :king => "\u265A",
-    :queen => "\u265B",
-    :knight => "\u265E",
-    :pawn => "\u265F",
-    :rook => "\u265C",
-    :bishop => "\u265D",
+    :king => " \u265A ",
+    :queen => " \u265B ",
+    :knight => " \u265E ",
+    :pawn => " \u265F ",
+    :rook => " \u265C ",
+    :bishop => " \u265D ",
     :null => "   "
   }
 
@@ -26,18 +26,18 @@ class Display
     @board.each_with_index do |row, row_idx|
       row.each_index do |col_idx|
         pos = [row_idx, col_idx]
-        unless @board[pos].is_a?(NullPiece)
-          if @cursor_pos == pos
-            print " #{PIECE_SYMBOLS[@board[pos].type].encode('UTF-8').colorize(:color => @board[pos].color, :background => :green)} "
+        if @cursor_pos == pos
+          print "#{PIECE_SYMBOLS[@board[pos].type].encode('UTF-8').colorize(:color => @board[pos].color, :background => :green)}"
+        else
+          if row_idx % 2 != col_idx % 2
+            print "#{PIECE_SYMBOLS[@board[pos].type].encode('UTF-8').colorize(:color => @board[pos].color, :background => :blue)}"
           else
-            print " #{PIECE_SYMBOLS[@board[pos].type].encode('UTF-8').colorize(@board[pos].color)} "
+            print "#{PIECE_SYMBOLS[@board[pos].type].encode('UTF-8').colorize(:color => @board[pos].color, :background => :light_blue)}"
           end
         end
       end
       puts
     end
-
-
   end
 
   def make_moves
