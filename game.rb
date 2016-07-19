@@ -15,15 +15,17 @@ require_relative "player"
 require_relative "human_player"
 require_relative "computer_player"
 require "colorize"
+require 'byebug'
 
 class Game
-  attr_reader :display, :player1, :player2, :current_player
+  attr_reader :display, :player1, :player2, :current_player, :board
 
-  def initialize(display = Display.new)
-    @display = display
+  def initialize(board=Board.new)
+    @board = board
+    @display = Display.new(@board)
     @player1 = HumanPlayer.new(@display)
     @player2 = HumanPlayer.new(@display, :white, "homo sapien")
-    @current_player = [player1, player2].sample
+    @current_player = player1 #[player1, player2].sample
   end
 
   def play
@@ -39,13 +41,31 @@ class Game
   end
 
   def play_turn
-    @current_player.make_move
     #ask for piece
-    display.make_moves #gives selected cursor position of piece
+    valid = false
+    until valid
+      display_board
+      p "select your piece"
+      pos_selected = @current_player.make_move
+      valid = valid_pos?(pos_selected)
+    end
+    @board[pos_selected]
+    puts "you selected at #{pos_selected}"
 
     #ask where to move piece
-
   end
+
+
+  def valid_pos?(pos_selected)
+    # byebug
+    pos_object = @board[pos_selected]
+    if pos_object.is_a?(NullPiece) || (pos_object.color != @current_player.color)
+      return false
+    else
+      true
+    end
+  end
+
 
   def switch_players
     @current_player = (@current_player == @player1 ? @player2 : @player1)
@@ -59,5 +79,5 @@ end
 if __FILE__ == $PROGRAM_NAME
   g = Game.new
   g.display_board
-  g.display.make_moves
+  g.play_turn
 end

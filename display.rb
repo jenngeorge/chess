@@ -2,8 +2,11 @@ require_relative 'board'
 require_relative 'cursorable'
 require "colorize"
 require "byebug"
+
 class Display
   include Cursorable
+
+  attr_reader :board
 
   PIECE_SYMBOLS = {
     :king => " \u265A ",
@@ -42,6 +45,7 @@ class Display
   end
 
   def make_moves
+    @selected = false 
     until @selected
       user_input = get_input
       render
