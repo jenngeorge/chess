@@ -32,13 +32,3 @@ class Display
     print @cursor_pos
   end
 end
-
-
-
-if __FILE__ == $PROGRAM_NAME
-  b = Board.new
-  b.populate_grid
-  d = Display.new(b)
-  d.render
-  d.make_moves
-end

@@ -1,4 +1,4 @@
-require_relative "board"
+require_relative "../board"
 
 class Piece
 
@@ -16,7 +16,7 @@ class Piece
   attr_reader :color
   attr_accessor :location
 
-  def initialize(type=nil, color=black, location=[0,0], board=Board.new)
+  def initialize(type=nil, color=:black, location=[0,0], board=Board.new)
     @color=color
     @type = type
     @location = location
