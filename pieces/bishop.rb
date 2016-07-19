@@ -1,6 +1,9 @@
-require_relative "sliding_piece"
+require_relative "piece"
+require_relative 'sliding_piece'
 
-class Bishop < SlidingPiece
+class Bishop < Piece
+  include SlidingPiece
+
   attr_reader :board
   def initialize(type='bishop', color=:black, location=[0,0], board=Board.new)
     super

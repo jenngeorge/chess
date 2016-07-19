@@ -2,6 +2,8 @@ require_relative "../board"
 
 class Piece
 
+  attr_reader :DIRECTIONS
+
   DIRECTIONS = {
     :up => [-1, 0],
     :down => [1, 0],

@@ -1,6 +1,8 @@
-require_relative "step_piece"
+require_relative "piece"
+require_relative 'step_piece'
 
-class King < StepPiece
+class King < Piece
+  include StepPiece
   attr_reader :board
 
   def initialize(type='king', color=:black, location=[0,0], board=Board.new)
