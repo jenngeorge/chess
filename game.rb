@@ -14,13 +14,33 @@ require_relative "pieces/step_piece"
 require "colorize"
 
 class Game
+  attr_reader :board, :player1, :player2, :current_player
+
   def initialize(board = Board.new, player1 = HumanPlayer.new, player2 = ComputerPlayer.new)
     @board = board
     @player1 = player1
     @player2 = player2
+    @current_player = [player1, player2].sample
   end
 
-  
+  def play
+    until game.won?
+      play_turn
+
+    end
+  end
+
+  def play_turn
+    @current_player.make_move 
+  end
+
+  def switch_players
+    @current_player = (@current_player == @player1 ? @player2 : @player1)
+  end
+
+  def won?
+    # checkmate logic
+  end
 end
 
 if __FILE__ == $PROGRAM_NAME
