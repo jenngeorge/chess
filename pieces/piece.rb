@@ -21,6 +21,4 @@ class Piece
       :right_down => [1, 1]
     }
   end
-
-
 end

@@ -21,9 +21,13 @@ if __FILE__ == $PROGRAM_NAME
 
   king = King.new(type=nil, color=:black, location=[0,0], b)
   p "king moves"
-  p king.moves(king.move_dirs, king.directions)
+  p king.moves(king.move_dirs)
 
   knight = Knight.new(type=nil, color=:black, location=[3, 3], b)
   p "knight moves"
-  p knight.moves(knight.move_dirs, knight.directions)
+  p knight.moves(knight.move_dirs)
+
+  pawn = Pawn.new(type=nil, color=:black, location=[6, 0], b)
+  p "pawn moves"
+  p pawn.step_moves
 end
