@@ -22,7 +22,7 @@ module SlidingPiece
   end
 
   def check_location?(starting_location)
-    @board[starting_location].empty? || starting_location == @location
+    @board[starting_location].color != @board[@location].color || starting_location == @location
   end
 
 end #class end

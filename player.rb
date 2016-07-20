@@ -2,7 +2,7 @@ require_relative 'display'
 
 class Player
 
-  attr_reader :color
+  attr_reader :color, :name 
 
   def initialize(display, color, name)
     @display = display

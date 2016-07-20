@@ -29,11 +29,11 @@ class Game
   end
 
   def play
-    until game.won?
-      display_board
-      declare_player
+    display_board
+    until won?
       play_turn
       switch_players
+      display_board
     end
   end
 
@@ -42,9 +42,9 @@ class Game
   end
 
   def play_turn
+    declare_player
     selected_piece = select_piece
     move_piece(selected_piece)
-    display_board
   end
 
 
@@ -56,7 +56,6 @@ class Game
     #ask for piece
     valid = false
     until valid
-      display_board
       p "select your piece"
       pos_selected = @current_player.make_move
       valid = valid_pos?(pos_selected)
@@ -77,6 +76,7 @@ class Game
       selected_object_valid_moves = selected_object.move_dirs
       valid = selected_object.moves(selected_object_valid_moves).include?(move_selected)
     end
+    # byebug
     puts "you moved to #{move_selected}"
     @board[move_selected] = selected_object
     @board[selected_location] = NullPiece.instance
@@ -100,13 +100,19 @@ class Game
   end
 
   def won?
-    # checkmate logic
-    
+    @board.each_with_index do |row, row_idx|
+      row.each do |object|
+        return false if object.is_a?(King) && object.color == @current_player.color
+      end
+    end
+
+    puts "you won you won you won! let's party."
+    true
   end
 end
 
 if __FILE__ == $PROGRAM_NAME
   g = Game.new
   g.display_board
-  g.play_turn
+  g.play
 end
