@@ -36,11 +36,18 @@ class Game
     end
   end
 
+  def play_turn
+    selected_piece = select_piece
+    move_piece(selected_piece)
+    display_board
+  end
+
+
   def display_board
     @display.render
   end
 
-  def play_turn
+  def select_piece
     #ask for piece
     valid = false
     until valid
@@ -49,10 +56,26 @@ class Game
       pos_selected = @current_player.make_move
       valid = valid_pos?(pos_selected)
     end
-    @board[pos_selected]
     puts "you selected at #{pos_selected}"
+    pos_selected
+  end
 
-    #ask where to move piece
+  def move_piece(selected_location)
+    puts "You selected a #{@board[selected_location].type}. "
+    valid = false
+    until valid
+      display_board
+      p "Where do you want to move it?"
+      move_selected = @current_player.make_move
+
+      selected_object = @board[selected_location]
+      selected_object_valid_moves = selected_object.move_dirs
+      valid = selected_object.moves(selected_object_valid_moves).include?(move_selected)
+    end
+    puts "you moved to #{move_selected}"
+    @board[move_selected] = selected_object
+    @board[selected_location] = NullPiece.instance
+    selected_object.location = move_selected
   end
 
 

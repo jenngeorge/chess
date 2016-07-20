@@ -9,7 +9,7 @@ class Pawn < Piece
     super
   end
 
-  def step_move_dirs
+  def move_dirs
     return [-1, 0] if @color == :black
     return [1, 0] if @color == :white
   end
@@ -25,7 +25,7 @@ class Pawn < Piece
   end
 
 
-  def step_moves
+  def moves(move_dirs)
     possible_moves = []
     number_steps = 1
 
@@ -34,13 +34,13 @@ class Pawn < Piece
       number_steps = gets.chomp.to_i
     end
     # byebug
-    x = @location[0] + step_move_dirs[0]
-    y = @location[1] + step_move_dirs[1]
+    x = @location[0] + move_dirs[0]
+    y = @location[1] + move_dirs[1]
     possible_moves << [x, y]
 
     if number_steps == 2
-      x = x + step_move_dirs[0]
-      y = y + step_move_dirs[1]
+      x = x + ove_dirs[0]
+      y = y + move_dirs[1]
       possible_moves << [x, y]
     end
 
