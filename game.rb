@@ -31,9 +31,14 @@ class Game
   def play
     until game.won?
       display_board
-
-
+      declare_player
+      play_turn
+      switch_players
     end
+  end
+
+  def declare_player
+    puts "It is #{@current_player.name}'s turn. Good luck!"
   end
 
   def play_turn
@@ -96,6 +101,7 @@ class Game
 
   def won?
     # checkmate logic
+    
   end
 end
 

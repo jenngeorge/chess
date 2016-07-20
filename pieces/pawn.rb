@@ -39,7 +39,7 @@ class Pawn < Piece
     possible_moves << [x, y]
 
     if number_steps == 2
-      x = x + ove_dirs[0]
+      x = x + move_dirs[0]
       y = y + move_dirs[1]
       possible_moves << [x, y]
     end
